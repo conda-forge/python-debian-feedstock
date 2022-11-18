@@ -1,5 +1,5 @@
-{% set version = "0.1.36" %}
-{% set sha256 = "c953bb0c54e96887badd2324cc66e1887bf2734f301882cd4fe847a844b518a6" %}
+{% set version = "0.1.40" %}
+{% set sha256 = "385dfb965eca75164d256486c7cf9bae772d24144249fd18b9d15d3cffb70eea" %}
 
 package:
   name: python-debian
@@ -12,7 +12,7 @@ source:
 build:
   number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
