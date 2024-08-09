@@ -38,7 +38,7 @@ test:
 about:
   home: https://salsa.debian.org/python-debian-team/python-debian
   license: GPL-2.0-or-later
-  license_file: gpl-2.0.txts
+  license_file: gpl-2.0.txt
   summary: Debian package related modules
 
 extra:
