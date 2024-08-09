@@ -1,1 +1,3 @@
+bot:
+  inspection: hint-all
 conda_forge_output_validation: true
