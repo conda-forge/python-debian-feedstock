@@ -1,41 +1,47 @@
-{% set version = "0.1.36" %}
-{% set sha256 = "c953bb0c54e96887badd2324cc66e1887bf2734f301882cd4fe847a844b518a6" %}
+{% set version = "0.1.49" %}
 
 package:
   name: python-debian
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/p/python-debian/python-debian-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  - url: https://pypi.io/packages/source/p/python-debian/python-debian-{{ version }}.tar.gz
+    sha256: 8cf677a30dbcb4be7a99536c17e11308a827a4d22028dc59a67f6c6dd3f0f58c
+  - url: https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
+    sha256: edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6
 
 build:
   number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
 
 requirements:
   host:
     - pip
-    - python
+    - python >=3.5
+    - setuptools >=61
+    - setuptools-scm >=6.2
+    - wheel
   run:
     - chardet
-    - python
-    - six
+    - python >=3.5
 
 test:
+  requires:
+    - pip
   imports:
     - debian
     - debian_bundle
+  commands:
+    - pip check
 
 about:
   home: https://salsa.debian.org/python-debian-team/python-debian
-  license: GPL-3.0-or-later
-  license_file: gpl-3.0.txt
+  license: GPL-2.0-or-later
+  license_file: gpl-2.0.txt
   summary: Debian package related modules
-  doc_url: https://python-debian-team.pages.debian.net/python-debian/
-  dev_url: https://salsa.debian.org/python-debian-team/python-debian
 
 extra:
   recipe-maintainers:
     - mbargull
+    - bollwyvl
