@@ -7,8 +7,6 @@ package:
 source:
   - url: https://pypi.org/packages/source/p/python-debian/python-debian-{{ version }}.tar.gz
     sha256: e19d8d31a7bb2d5939dffd1c21d27d4e49bbb683bb061c24420295ecedf4b2ad
-  - url: https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
-    sha256: edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6
 
 build:
   number: 0
