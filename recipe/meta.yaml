@@ -1,4 +1,4 @@
-{% set version = "0.1.49" %}
+{% set version = "1.0.0" %}
 
 package:
   name: python-debian
@@ -6,12 +6,10 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/p/python-debian/python-debian-{{ version }}.tar.gz
-    sha256: 8cf677a30dbcb4be7a99536c17e11308a827a4d22028dc59a67f6c6dd3f0f58c
-  - url: https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
-    sha256: edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6
+    sha256: e19d8d31a7bb2d5939dffd1c21d27d4e49bbb683bb061c24420295ecedf4b2ad
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
 
@@ -23,7 +21,7 @@ requirements:
     - setuptools-scm >=6.2
     - wheel
   run:
-    - chardet
+    - charset-normalizer
     - python >={{ python_min }}
 
 test:
@@ -32,7 +30,6 @@ test:
     - python {{ python_min }}
   imports:
     - debian
-    - debian_bundle
   commands:
     - pip check
 
