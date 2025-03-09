@@ -30,7 +30,6 @@ test:
     - python {{ python_min }}
   imports:
     - debian
-    - debian_bundle
   commands:
     - pip check
 
