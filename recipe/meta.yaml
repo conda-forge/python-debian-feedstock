@@ -21,7 +21,7 @@ requirements:
     - setuptools-scm >=6.2
     - wheel
   run:
-    - chardet
+    - charset-normalizer
     - python >={{ python_min }}
 
 test:
