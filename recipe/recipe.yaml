@@ -10,13 +10,19 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/p/python-debian/python_debian-${{ version }}.tar.gz
-  sha256: afe3c7267d81c29c79ab44d803a0756d0796b0e41bb0a05c5cafcdd2b980d4e6
+  - target_directory: dist
+    url: https://pypi.org/packages/source/p/python-debian/python_debian-${{ version }}.tar.gz
+    sha256: afe3c7267d81c29c79ab44d803a0756d0796b0e41bb0a05c5cafcdd2b980d4e6
+  - target_directory: src
+    url: https://salsa.debian.org/python-debian-team/python-debian/-/archive/debian/${{ version }}/python-debian-debian-${{ version }}.tar.gz
+    sha256: 7a1837bc39e5d414b9cb85b5e5571f942b7076254e7d3712e0ba8f90c89db7ed
 
 build:
   number: 0
   noarch: python
-  script: ${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
+  script:
+    - cd dist
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
 
 requirements:
   host:
@@ -31,27 +37,24 @@ requirements:
 
 tests:
   - python:
-      imports:
-        - debian
-        - debian.arfile
-        - debian.changelog
-        - debian.copyright
-        - debian.deb822
-        - debian.debfile
-        - debian.debian_support
-        - debian.debtags
-        - debian.substvars
-        - debian.watch
+      imports: debian
       pip_check: true
       python_version:
         - ${{ python_min }}.*
         - ${{ python_check_max }}.*
-  - requirements:
+  - files:
+      source:
+        - src/conftest.py
+        - src/pyproject.toml
+        - src/tests/
+    requirements:
       run:
-        - mypy
-        - ${{ python_min }}.*
+        - python ${{ python_min }}.*
+        - pytest-cov
     script:
-      - mypy -p debian
+      - cd src
+      - coverage run --source=debian --branch -m pytest -vv --tb=long --color=yes
+      - coverage report --show-missing --skip-covered --fail-under=80
 
 about:
   license: GPL-2.0-or-later
