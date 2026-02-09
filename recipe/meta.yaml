@@ -1,12 +1,12 @@
-{% set version = "1.0.1" %}
+{% set version = "1.1.0" %}
 
 package:
   name: python-debian
   version: {{ version }}
 
 source:
-  - url: https://pypi.org/packages/source/p/python-debian/python-debian-{{ version }}.tar.gz
-    sha256: 3ada9b83a3d671b58081782c0969cffa0102f6ce433fbbc7cf21275b8b5cc771
+  - url: https://pypi.org/packages/source/p/python-debian/python_debian-{{ version }}.tar.gz
+    sha256: afe3c7267d81c29c79ab44d803a0756d0796b0e41bb0a05c5cafcdd2b980d4e6
 
 build:
   number: 0
