@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "1.1.0"
+  python_check_max: "3.14"
+
+package:
+  name: python-debian
+  version: ${{ version }}
+
+source:
+  - target_directory: dist
+    url: https://pypi.org/packages/source/p/python-debian/python_debian-${{ version }}.tar.gz
+    sha256: afe3c7267d81c29c79ab44d803a0756d0796b0e41bb0a05c5cafcdd2b980d4e6
+  - target_directory: src
+    url: https://salsa.debian.org/python-debian-team/python-debian/-/archive/debian/${{ version }}/python-debian-debian-${{ version }}.tar.gz
+    sha256: 7a1837bc39e5d414b9cb85b5e5571f942b7076254e7d3712e0ba8f90c89db7ed
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - cd dist
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=61
+    - setuptools-scm >=6.2
+    - wheel
+  run:
+    - charset-normalizer
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports: debian
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - files:
+      source:
+        - src/conftest.py
+        - src/pyproject.toml
+        - src/tests/
+    requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pytest-cov
+    script:
+      - cd src
+      - coverage run --source=debian --branch -m pytest -vv --tb=long --color=yes
+      - coverage report --show-missing --skip-covered --fail-under=80
+
+about:
+  license: GPL-2.0-or-later
+  license_file: gpl-2.0.txt
+  summary: Debian package related modules
+  homepage: https://pypi.org/project/python-debian
+  repository: https://salsa.debian.org/python-debian-team/python-debian
+
+extra:
+  recipe-maintainers:
+    - mbargull
+    - bollwyvl
