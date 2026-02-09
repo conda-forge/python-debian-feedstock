@@ -3,11 +3,13 @@ About python-debian-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/python-debian-feedstock/blob/main/LICENSE.txt)
 
-Home: https://salsa.debian.org/python-debian-team/python-debian
+Home: https://pypi.org/project/python-debian
 
 Package license: GPL-2.0-or-later
 
 Summary: Debian package related modules
+
+Development: https://salsa.debian.org/python-debian-team/python-debian
 
 Current build status
 ====================
