@@ -14,7 +14,7 @@ source:
     url: https://pypi.org/packages/source/p/python-debian/python_debian-${{ version }}.tar.gz
     sha256: fe4fc3dc798dbf1f0ef5865e2b1b4f7cc0352b6a511b25ab7594906c64a73629
   - target_directory: src
-    url: https://salsa.debian.org/python-debian-team/python-debian/-/archive/debian/${{ version }}/python-debian-debian-${{ version }}.tar.gz
+    url: https://salsa.debian.org/python-debian-team/python-debian/-/archive/${{ version }}/python-debian-${{ version }}.tar.gz
     sha256: dcb2643403363a244d3a36d19149fb33fd085e097cc7cfd595af8dc73b032f61
 
 
