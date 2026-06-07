@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "1.1.0"
+  version: "1.1.1"
   python_check_max: "3.14"
 
 package:
@@ -12,10 +12,10 @@ package:
 source:
   - target_directory: dist
     url: https://pypi.org/packages/source/p/python-debian/python_debian-${{ version }}.tar.gz
-    sha256: afe3c7267d81c29c79ab44d803a0756d0796b0e41bb0a05c5cafcdd2b980d4e6
+    sha256: fe4fc3dc798dbf1f0ef5865e2b1b4f7cc0352b6a511b25ab7594906c64a73629
   - target_directory: src
-    url: https://salsa.debian.org/python-debian-team/python-debian/-/archive/debian/${{ version }}/python-debian-debian-${{ version }}.tar.gz
-    sha256: 7a1837bc39e5d414b9cb85b5e5571f942b7076254e7d3712e0ba8f90c89db7ed
+    url: https://salsa.debian.org/python-debian-team/python-debian/-/archive/debian/${{ version }}/python-debian-debian-${{ version }}.tar.xz
+    sha256: 24c0b24de679cc99a49ec595167f8529bdceeaf8d974e71daf981f98cce3bcab
 
 build:
   number: 0
